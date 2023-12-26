@@ -56,7 +56,31 @@ export const CategoryProvider = ({ children }) => {
 
 	const updateCategory = async () => {
 		try {
-			//
+			const response = await fetch(
+				`$(process.env.API}/admin/category/${updatingCategory?._id}`,
+				{
+					method: 'PUT',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({ name }),
+				}
+			);
+
+			const data = await response.json();
+
+			if (!response.ok) {
+				toast.error(data);
+			} else {
+				toast.success('Category updated.');
+				setUpdatingCategory(null);
+				setCategories(
+					categories.map((category) =>
+						category._id === updatingCategory._id ? data : category
+					)
+				);
+				setUpdatingCategory(null);
+			}
 		} catch (err) {
 			console.log(err);
 			toast.error('An error occurred.  Try again.');
