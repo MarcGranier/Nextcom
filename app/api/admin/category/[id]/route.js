@@ -22,3 +22,15 @@ export async function PUT(req, context) {
 		return NextResponse.json(err.message, { status: 500 });
 	}
 }
+
+export async function DELETE(req, context) {
+	await dbConnect;
+	try {
+		const deletingCategory = await Category.findByIdAndDelete(
+			context.params.id
+		);
+		return NextResponse.json(deletingCategory);
+	} catch (err) {
+		return NextResponse.json(err.message, { status: 500 });
+	}
+}
