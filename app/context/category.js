@@ -15,7 +15,23 @@ export const CategoryProvider = ({ children }) => {
 	//to create a category
 	const createCategory = async () => {
 		try {
-			//
+			const response = await fetch(`${process.env.API}/admin/category`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ name }),
+			});
+
+			const data = await response.json();
+
+			if (!response.ok) {
+				toast.error(data);
+			} else {
+				toast.success('Category created.');
+				setName('');
+				setCategories([data.category, ...categories]);
+			}
 		} catch (err) {
 			console.log(err);
 			toast.error('An error occurred.  Try again.');
