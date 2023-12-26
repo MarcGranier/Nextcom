@@ -89,7 +89,24 @@ export const CategoryProvider = ({ children }) => {
 
 	const deleteCategory = async () => {
 		try {
-			//
+			const response = await fetch(
+				`(process.env.API)/admin/category/${updatingCategory?._id}`,
+				{
+					method: 'DELETE',
+				}
+			);
+
+			const data = await response.json();
+
+			if (!response.ok) {
+				toast.error(data);
+			} else {
+				toast.success('Category deleted.');
+				setCategories(
+					categories.filter((category) => category._id !== updatingCategory._id)
+				);
+				setUpdatingCategory(null);
+			}
 		} catch (err) {
 			console.log(err);
 			toast.error('An error occurred.  Try again.');
