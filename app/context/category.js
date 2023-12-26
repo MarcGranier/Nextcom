@@ -30,7 +30,7 @@ export const CategoryProvider = ({ children }) => {
 			} else {
 				toast.success('Category created.');
 				setName('');
-				setCategories([data.category, ...categories]);
+				setCategories([data, ...categories]);
 			}
 		} catch (err) {
 			console.log(err);
@@ -40,7 +40,14 @@ export const CategoryProvider = ({ children }) => {
 
 	const fetchCategories = async () => {
 		try {
-			//
+			const response = await fetch(`${process.env.API}/admin/category`);
+			const data = await response.json();
+
+			if (!response.ok) {
+				toast.error(data);
+			} else {
+				setCategories(data);
+			}
 		} catch (err) {
 			console.log(err);
 			toast.error('An error occurred.  Try again.');
