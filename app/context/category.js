@@ -34,7 +34,7 @@ export const CategoryProvider = ({ children }) => {
 			}
 		} catch (err) {
 			console.log(err);
-			toast.error('An error occurred.  Try again.');
+			toast.error(data);
 		}
 	};
 
@@ -50,7 +50,7 @@ export const CategoryProvider = ({ children }) => {
 			}
 		} catch (err) {
 			console.log(err);
-			toast.error('An error occurred.  Try again.');
+			toast.error(data);
 		}
 	};
 
@@ -83,7 +83,7 @@ export const CategoryProvider = ({ children }) => {
 			}
 		} catch (err) {
 			console.log(err);
-			toast.error('An error occurred.  Try again.');
+			toast.error(data);
 		}
 	};
 
@@ -109,7 +109,7 @@ export const CategoryProvider = ({ children }) => {
 			}
 		} catch (err) {
 			console.log(err);
-			toast.error('An error occurred.  Try again.');
+			toast.error(data);
 		}
 	};
 

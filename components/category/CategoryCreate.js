@@ -25,6 +25,9 @@ export default function CategoryCreate() {
 				}
 				className='form-control p-2 my-2'
 			/>
+
+			{/* <pre>{JSON.stringify(categoryUpdate, null, 4)}</pre> */}
+
 			<div className='d-flex justify-content-between'>
 				<button
 					className={`btn bg-${
